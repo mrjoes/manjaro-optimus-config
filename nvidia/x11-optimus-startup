@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Rescan PCI bus
+echo 1 > /sys/bus/pci/rescan
+
+# Load modules
+modprobe nvidia nvidia-drm
+

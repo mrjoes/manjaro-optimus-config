@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Set resolution
+xrandr --setprovideroutputsource modesetting NVIDIA-0
+xrandr --auto
+xrandr --dpi 192
+

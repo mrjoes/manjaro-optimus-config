@@ -1,0 +1,22 @@
+#!/bin/bash
+
+DIR=$(dirname $0)
+
+if [[ $(/usr/bin/id -u) -ne 0 ]]; then
+    echo "Not running as root"
+    exit
+fi
+
+if [ -z $1 ]; then
+    echo "Please pass the nvidia or intel parameter"
+    exit
+fi
+
+cp $DIR/shared/modprobe-optimus-gpu.conf /etc/modprobe.d/optimus-gpu.conf
+
+cp $DIR/$1/lightdm-set-display /etc/lightdm/set-display
+cp $DIR/$1/x11-optimus.conf /etc/X11/xorg.conf.d/90-optimus.conf
+cp $DIR/$1/x11-optimus-startup /etc/X11/optimus-startup
+
+systemctl restart display-manager.service
+

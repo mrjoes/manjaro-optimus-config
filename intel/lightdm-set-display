@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# Set resolution and dpi
+xrandr --auto
+xrandr --dpi 192
+
