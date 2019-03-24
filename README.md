@@ -15,7 +15,7 @@ The whole thing is, actually, pretty simple:
 
  1. We're reconfiguring Xorg server to use intel or nvidia specific configuration depending
     on the chosen mode (`diff nvidia/x11-optimus.conf intel/x11-optimus.conf`)
- 2. Updating the script that's executed before the display manager starts:
+ 2. Running a script before the display manager starts:
     - For the intel mode we're unloading nvidia kernel modules and disabling nvidia
       PCI devices (I have two, GPU and HDMI sound). You can find device ids by running
       `lspci | grep -i nvidia`
