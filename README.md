@@ -35,23 +35,17 @@ work with other display managers. See how it works section for more information.
 2. If you used `mhwd` to install video drivers, `mhwd` will create few
    configuration files under `/etc/X11/xorg.conf.d/`, `/etc/modules-load.d/` and
    `/etc/modprobe.d/`. Either remove them manually or just uninstall drivers through
-   `mhwd`.
-3. Uninstall `bumblebee` if you have it installed
+   `mhwd` to clean things up.
+3. Uninstall `bumblebee`, if you have it installed
 3. Install nvidia driver: `pacman -S linux50-nvidia`
 4. Install intel driver: `pacman -S xf86-video-intel`
 5. Adjust packaged Xorg config files to your liking (`intel/x11-optimus.conf` and
    `nvidia/x11-optimus.conf`). You might want to remove everything but video-related
    sections. 
 6. Adjust intel or nvidia related kernel module options in `shared/modprobe-optimus-gpu.conf`
-7. Update display-manager configuration file to run a script that will enable or
-   disable nvidia PCI device before the display manager starts. I'm not a systemd
-   guru and maybe there's a better way to do it. The goal here is to load necessary
-   nvidia modules before the display manager is started.
-
-   1. Edit `/etc/systemd/system/display-manager.service`
-   2. Add `ExecPreStart=/etc/X11/optimus-startup` after `[Service]`
-   3. Save
-   4. Run `sudo systemctl daemon-reload` to reload systemd service configuration
+7. Install an `optimus.service` by running:
+   `cp shared/optimus.service /etc/systemd/system/`
+   `systemctl enable optimus.service`
 8. Run `sudo ./set-mode intel`. This will restart your display service and disable
    nVidia GPU. It should work out of the box. On the next reboot it'll also apply
    various module options (power saving for nvidia, etc) automatically.

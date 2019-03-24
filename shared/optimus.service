@@ -1,0 +1,12 @@
+[Unit]
+Description=Enable/disable eGPU on display-manager start
+Before=lightdm.service
+PartOf=lightdm.service
+
+[Service]
+Type=oneshot
+ExecStart=/etc/X11/optimus-startup
+RemainAfterExit=true
+
+[Install]
+WantedBy=lightdm.service
