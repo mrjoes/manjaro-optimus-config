@@ -29,7 +29,7 @@ Installation
 ------------
 
 I'm using `lightdm`, you might have to tweak the installation scripts to
-work with other display managers. See how it works section for more information.
+work with other display managers.
 
 1. Clone the repo
 2. If you used `mhwd` to install video drivers, `mhwd` will create few
